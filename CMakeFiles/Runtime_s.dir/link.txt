@@ -1,1 +1,0 @@
-/nix/store/gk099cfff3s1g01adgvsn3957zabppvw-gcc-wrapper-10.2.0/bin/g++ -fPIC -g -shared -Wl,-soname,libRuntime_s.so -o libRuntime_s.so CMakeFiles/Runtime_s.dir/library.cpp.o 
