@@ -2,11 +2,8 @@ with (import <nixpkgs> {});
 stdenv.mkDerivation {
   name = "Scheme-Runtime";
   nativeBuildInputs = [ cmake ];
+  buildInputs = [ boehmgc ];
   src = fetchTarball { url = "https://github.com/teichholz/Schemer-Runtime/archive/refs/heads/main.tar.gz"; };
-
-  buildPhase = ''
-    cmake --build $src
-  '';
 
   installPhase = ''
     mkdir -p $out/lib
