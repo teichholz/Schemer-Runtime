@@ -852,6 +852,28 @@ SObj *memv(SObj *obj, SObj *list){
     return f;
 }
 
+// 1 -> 2 -> 3
+SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*)){
+    if (cons->type != Nil)
+      return (*fptr)(_car(cons), rfold(_cdr(cons), init, fptr));
+    else
+      return init;
+}
+
+SObj *cloneCons(SObj *cns){
+    return rfold(cns, get_nil(), cons);
+}
+
+SObj *append2(SObj *fst, SObj *snd){
+    SObj *init = cloneCons(snd);
+    return rfold(fst, init, cons);
+}
+
+one_arg_vafun(append)
+SObj *append(SObj *obj){
+    return rfold(obj, get_nil(), append2);
+}
+
 // Vector
 one_arg_fun(make_vector1)
 SObj *make_vector1(SObj *k) {

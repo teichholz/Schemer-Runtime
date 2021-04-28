@@ -7,6 +7,27 @@
 #include "library.h"
 
 extern "C" {
+SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*)){
+if (cons->type != Nil)
+return (*fptr)(_car(cons), rfold(_cdr(cons), init, fptr));
+else
+return init;
+}
+
+SObj *cloneCons(SObj *cns){
+return rfold(cns, get_nil(), cons);
+}
+
+SObj *append2(SObj *fst, SObj *snd){
+SObj *init = cloneCons(snd);
+return rfold(fst, init, cons);
+}
+
+one_arg_vafun(append)
+SObj *append(SObj *obj){
+return rfold(obj, get_nil(), append2);
+}
+
     int main(int argc, char** argv){
         // init_gc();
         // auto num = const_init_int(2);
@@ -55,18 +76,34 @@ extern "C" {
         // auto outer = times1(cons(const_init_int(2), cons(inner, get_nil())));
 
         // auto ret = const_init_float(_unwrap_int(const_init_int(2)) * _unwrap_float(const_init_float(4.4)));
-        auto helper = arhelper(const_init_int(2), const_init_float(4.4), '*');
+        // auto helper = arhelper(const_init_int(2), const_init_float(4.4), '*');
 
-        f64 f = 4.4;
-        s64 fac = 2;
+        // f64 f = 4.4;
+        // s64 fac = 2;
 
         // display(inner);
         // display(ret);
-        display(helper);
+        // display(helper);
         // printf("%f\n", f * fac);
         // printf("float: %f\n", _unwrap_float(const_init_float(4.4)));
         // printf("int: %ld", _unwrap_int(const_init_int(2)));
 
+        // halt(const_init_int(42));
+        // display(const_init_int(42));
+        // display(const_init_int(42));
+        // display(const_init_int(42));
+
+        auto nil = get_nil();
+        auto cns = cons(const_init_int(1), cons(const_init_int(2), nil));
+
+        auto cns2 = cloneCons(cns);
+        display(cns2);
+
+        auto cns3 = append2(cns, cns2);
+        display(cns3);
+
+        auto cns4 = append(cons(cns, cons(cns2, cons(cns3, nil))));
+        display(cns4);
 
         return 0;
     }
