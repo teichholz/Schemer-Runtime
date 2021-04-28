@@ -226,6 +226,7 @@ SObj *set_car(SObj *, SObj *);
 SObj *set_cdr(SObj *, SObj *);
 SObj *memv(SObj *, SObj *);
 SObj *append(SObj *);
+SObj *list(SObj *);
 
 // vector
 SObj *make_vector(SObj *);

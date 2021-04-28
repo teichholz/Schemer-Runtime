@@ -873,6 +873,10 @@ one_arg_vafun(append)
 SObj *append(SObj *obj){
     return rfold(obj, get_nil(), append2);
 }
+one_arg_vafun(list)
+SObj *list(SObj *obj){
+    return obj;
+}
 
 // Vector
 one_arg_fun(make_vector1)
