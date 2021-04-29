@@ -1000,11 +1000,29 @@ void display_aux(SObj *obj) {
 
 // (cons 1 (cons 2 (cons 3 '())))
 // (cons 1 (cons 2 3))
+// (list quote )
 SObj *display_cons(SObj *cons) {
     SObj *first = car(cons);
     SObj *rest = cdr(cons);
 
-    printf("'(");
+    SObj *quote = const_init_symbol("quote");
+    SObj *quasiquote = const_init_symbol("quasiquote");
+    SObj *unquote = const_init_symbol("unquote");
+    SObj *unquoteSplicing = const_init_symbol("unquote-splicing");
+    bool b = false;
+
+    if (eqp(first, unquote) == t) {
+       printf("'");
+    } else if (eqp(first, quasiquote) == t){
+       printf("`");
+    } else if (eqp(first, unquote) == t){
+       printf(",");
+    } else if (eqp(first, unquoteSplicing) == t){
+       printf(",@");
+    } else {
+       printf("(");
+       b = true;
+    }
     display_aux(first);
     while(rest->type == Cons){
         first = car(rest);
@@ -1018,7 +1036,8 @@ SObj *display_cons(SObj *cons) {
         printf(" . ");
         display_aux(rest);
     }
-    printf(")");
+    if (b) printf(")");
+
     return unspecified;
 }
 
