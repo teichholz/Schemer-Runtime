@@ -1023,6 +1023,12 @@ SObj *display_cons(SObj *cons) {
        printf("(");
        b = true;
     }
+
+    if (!b) {
+        first = car(rest);
+        rest = cdr(rest);
+    }
+
     display_aux(first);
     while(rest->type == Cons){
         first = car(rest);
