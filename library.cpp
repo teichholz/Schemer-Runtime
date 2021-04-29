@@ -1011,7 +1011,7 @@ SObj *display_cons(SObj *cons) {
     SObj *unquoteSplicing = const_init_symbol("unquote-splicing");
     bool b = false;
 
-    if (eqp(first, unquote) == t) {
+    if (eqp(first, quote) == t) {
        printf("'");
     } else if (eqp(first, quasiquote) == t){
        printf("`");
