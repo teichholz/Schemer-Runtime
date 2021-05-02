@@ -860,18 +860,35 @@ SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*)){
       return init;
 }
 
+SObj *rfold1(SObj *cons, SObj* (*fptr) (SObj *, SObj*)){
+    if (cons->content.Cons.cdr->type != Nil)
+      return (*fptr)(_car(cons), rfold(_cdr(cons), init, fptr));
+    else
+      return cons;
+}
+
 SObj *cloneCons(SObj *cns){
     return rfold(cns, get_nil(), cons);
 }
 
 SObj *append2(SObj *fst, SObj *snd){
-    SObj *init = cloneCons(snd);
-    return rfold(fst, init, cons);
+    SObj *ret;
+    if (snd->type == Cons) {
+        // only clone if second arg is a Cons. Consider: (append '(1) '(2) 3) => (1 2 . 3)
+        SObj *init = cloneCons(snd);
+        ret = rfold(fst, init, cons);
+    }else {
+        ret = rfold(fst, snd, cons);
+    }
+    return ret;
 }
 
 one_arg_vafun(append)
 SObj *append(SObj *obj){
-    return rfold(obj, get_nil(), append2);
+    // We need to consider: Consider: (append '(1) '(2) 3) => (1 2 . 3)
+    // and (append) => ()
+    if (obj->type == Nil) return gen_nil();
+    else return rfold1(obj, append2);
 }
 one_arg_vafun(list)
 SObj *list(SObj *obj){
