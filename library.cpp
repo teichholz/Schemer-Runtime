@@ -862,7 +862,7 @@ SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*)){
 
 SObj *rfold1(SObj *cons, SObj* (*fptr) (SObj *, SObj*)){
     if (cons->content.Cons.cdr->type != Nil)
-      return (*fptr)(_car(cons), rfold(_cdr(cons), init, fptr));
+      return (*fptr)(_car(cons), rfold1(_cdr(cons),  fptr));
     else
       return cons;
 }
@@ -885,10 +885,12 @@ SObj *append2(SObj *fst, SObj *snd){
 
 one_arg_vafun(append)
 SObj *append(SObj *obj){
-    // We need to consider: Consider: (append '(1) '(2) 3) => (1 2 . 3)
-    // and (append) => ()
-    if (obj->type == Nil) return gen_nil();
-    else return rfold1(obj, append2);
+    // We need to consider: (append '(1) '(2) 3) => (1 2 . 3)
+    // and: (append) => ()
+    SObj *ret;
+    if (obj->type == Nil) ret = get_nil();
+    else ret = rfold1(obj, append2);
+    return ret;
 }
 one_arg_vafun(list)
 SObj *list(SObj *obj){
