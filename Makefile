@@ -67,10 +67,10 @@ RM = /nix/store/mzbylj1zprn18m7h2nsf6vmfafkvz54r-cmake-3.19.3/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tim/doc/bt/Schemer/Runtime
+CMAKE_SOURCE_DIR = /home/tim/sciebo/Dokumente/bt/Runtime
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tim/doc/bt/Schemer/Runtime
+CMAKE_BINARY_DIR = /home/tim/sciebo/Dokumente/bt/Runtime
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tim/doc/bt/Schemer/Runtime/CMakeFiles /home/tim/doc/bt/Schemer/Runtime//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tim/sciebo/Dokumente/bt/Runtime/CMakeFiles /home/tim/sciebo/Dokumente/bt/Runtime//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tim/doc/bt/Schemer/Runtime/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tim/sciebo/Dokumente/bt/Runtime/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
