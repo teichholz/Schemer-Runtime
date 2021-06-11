@@ -973,7 +973,7 @@ SObj *display(SObj *obj){
 one_arg_fun(halt)
 SObj *halt(SObj *obj){
     display(obj);
-    //exit(0);
+    exit(0);
     return obj;
 }
 
