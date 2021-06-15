@@ -15,10 +15,10 @@
 ########################
 
 //Path to a program.
-CMAKE_ADDR2LINE:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/addr2line
+CMAKE_ADDR2LINE:FILEPATH=/run/current-system/sw/bin/addr2line
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/ar
+CMAKE_AR:FILEPATH=/run/current-system/sw/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
@@ -28,15 +28,13 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/nix/store/gk099cfff3s1g01adgvsn3957zabppvw-gcc-wrapper-10.2.0/bin/g++
+CMAKE_CXX_COMPILER:FILEPATH=/etc/profiles/per-user/tim/bin/c++
 
-//A wrapper around 'ar' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_CXX_COMPILER_AR:FILEPATH=/nix/store/9rmf9whh2m8fqlqp859d8pmsb63jarsp-gcc-10.2.0/bin/gcc-ar
+//LLVM archiver
+CMAKE_CXX_COMPILER_AR:FILEPATH=CMAKE_CXX_COMPILER_AR-NOTFOUND
 
-//A wrapper around 'ranlib' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/nix/store/9rmf9whh2m8fqlqp859d8pmsb63jarsp-gcc-10.2.0/bin/gcc-ranlib
+//Generate index for LLVM archive
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=CMAKE_CXX_COMPILER_RANLIB-NOTFOUND
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -54,15 +52,13 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/nix/store/gk099cfff3s1g01adgvsn3957zabppvw-gcc-wrapper-10.2.0/bin/gcc
+CMAKE_C_COMPILER:FILEPATH=/etc/profiles/per-user/tim/bin/cc
 
-//A wrapper around 'ar' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_C_COMPILER_AR:FILEPATH=/nix/store/9rmf9whh2m8fqlqp859d8pmsb63jarsp-gcc-10.2.0/bin/gcc-ar
+//LLVM archiver
+CMAKE_C_COMPILER_AR:FILEPATH=CMAKE_C_COMPILER_AR-NOTFOUND
 
-//A wrapper around 'ranlib' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/nix/store/9rmf9whh2m8fqlqp859d8pmsb63jarsp-gcc-10.2.0/bin/gcc-ranlib
+//Generate index for LLVM archive
+CMAKE_C_COMPILER_RANLIB:FILEPATH=CMAKE_C_COMPILER_RANLIB-NOTFOUND
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -104,10 +100,10 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 CMAKE_INSTALL_PREFIX:PATH=/var/empty/local
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/nix/store/gk099cfff3s1g01adgvsn3957zabppvw-gcc-wrapper-10.2.0/bin/ld
+CMAKE_LINKER:FILEPATH=/etc/profiles/per-user/tim/bin/ld
 
 //Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/nix/store/5p0y9zsfrwffc6836g006kc76lcbzlg2-gnumake-4.3/bin/make
+CMAKE_MAKE_PROGRAM:FILEPATH=/run/current-system/sw/bin/make
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -130,13 +126,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/nm
+CMAKE_NM:FILEPATH=/run/current-system/sw/bin/nm
 
 //Path to a program.
-CMAKE_OBJCOPY:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/objcopy
+CMAKE_OBJCOPY:FILEPATH=/run/current-system/sw/bin/objcopy
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/objdump
+CMAKE_OBJDUMP:FILEPATH=/run/current-system/sw/bin/objdump
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -148,10 +144,10 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=Runtime
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/ranlib
+CMAKE_RANLIB:FILEPATH=/run/current-system/sw/bin/ranlib
 
 //Path to a program.
-CMAKE_READELF:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/readelf
+CMAKE_READELF:FILEPATH=/run/current-system/sw/bin/readelf
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
@@ -201,7 +197,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/nix/store/rqfgki7ck1bxqhk3hd7wziqhahjadfbj-binutils-2.35.1/bin/strip
+CMAKE_STRIP:FILEPATH=/run/current-system/sw/bin/strip
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -360,7 +356,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_STRIP
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //uname command
-CMAKE_UNAME:INTERNAL=/nix/store/0y7rv26ffa359wvqd3js94cn73z882fg-coreutils-8.32/bin/uname
+CMAKE_UNAME:INTERNAL=/run/current-system/sw/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 

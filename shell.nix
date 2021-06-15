@@ -4,6 +4,7 @@ with pkgs;
 
 mkShell {
   buildInputs = [
+    cmake
     boehmgc
     (import ./runtime.nix )
   ];
