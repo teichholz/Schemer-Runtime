@@ -116,6 +116,7 @@ SObj *const_init_int(long);
 SObj *const_init_float(f64);
 SObj *const_init_char(char);
 SObj *const_init_string(char*);
+SObj *const_init_symbol(char*);
 SObj *const_init_bool(bool);
 
 // closures
@@ -225,6 +226,10 @@ SObj *length(SObj*);
 SObj *set_car(SObj *, SObj *);
 SObj *set_cdr(SObj *, SObj *);
 SObj *memv(SObj *, SObj *);
+SObj *append(SObj *);
+SObj *append2(SObj *, SObj *);
+SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*));
+SObj *rfold1(SObj *cons, SObj* (*fptr) (SObj *, SObj*));
 SObj *append(SObj *);
 SObj *list(SObj *);
 

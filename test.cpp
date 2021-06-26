@@ -6,28 +6,6 @@
 #include <cstdio>
 #include "library.h"
 
-extern "C" {
-SObj *rfold(SObj *cons, SObj* init, SObj* (*fptr) (SObj *, SObj*)){
-if (cons->type != Nil)
-return (*fptr)(_car(cons), rfold(_cdr(cons), init, fptr));
-else
-return init;
-}
-
-SObj *cloneCons(SObj *cns){
-return rfold(cns, get_nil(), cons);
-}
-
-SObj *append2(SObj *fst, SObj *snd){
-SObj *init = cloneCons(snd);
-return rfold(fst, init, cons);
-}
-
-one_arg_vafun(append)
-SObj *append(SObj *obj){
-return rfold(obj, get_nil(), append2);
-}
-
     int main(int argc, char** argv){
         // init_gc();
         // auto num = const_init_int(2);
@@ -96,7 +74,7 @@ return rfold(obj, get_nil(), append2);
         auto nil = get_nil();
         auto cns = cons(const_init_int(1), cons(const_init_int(2), nil));
 
-        auto cns2 = cloneCons(cns);
+        auto cns2 = cns;
         display(cns2);
 
         auto cns3 = append2(cns, cns2);
@@ -105,6 +83,12 @@ return rfold(obj, get_nil(), append2);
         auto cns4 = append(cons(cns, cons(cns2, cons(cns3, nil))));
         display(cns4);
 
+        auto fst = cons(const_init_symbol("unquote"), get_nil());
+        auto snd = cons(const_init_int(0), get_nil());
+        auto appe = append2(fst, snd);
+        auto appe2 = append(cons(fst, cons(snd, get_nil())));
+        display(appe2);
+
         return 0;
-    }
-}
+
+   }

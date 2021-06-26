@@ -874,7 +874,6 @@ SObj *cloneCons(SObj *cns){
 SObj *append2(SObj *fst, SObj *snd){
     SObj *ret;
     if (snd->type == Cons) {
-        // only clone if second arg is a Cons. Consider: (append '(1) '(2) 3) => (1 2 . 3)
         SObj *init = cloneCons(snd);
         ret = rfold(fst, init, cons);
     }else {
@@ -885,11 +884,9 @@ SObj *append2(SObj *fst, SObj *snd){
 
 one_arg_vafun(append)
 SObj *append(SObj *obj){
-    // We need to consider: (append '(1) '(2) 3) => (1 2 . 3)
-    // and: (append) => ()
     SObj *ret;
     if (obj->type == Nil) ret = get_nil();
-    else ret = rfold1(obj, append2);
+    else ret = rfold(obj, get_nil(), append2);
     return ret;
 }
 one_arg_vafun(list)
