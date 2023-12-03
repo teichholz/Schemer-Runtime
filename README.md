@@ -1,7 +1,7 @@
 # Schemer-Runtime
 
 Simple runtime for my simple Scheme compiler [Schemer](https://github.com/teichholz/Schemer).
-Used to bootstrap my scheem library and implement GC via [BoehmGC](https://github.com/ivmai/bdwgc).
+Used to bootstrap my Scheme library and implement GC via [BoehmGC](https://github.com/ivmai/bdwgc).
 
 The runtime Scheme type is implement via a tagged union:
 ```c
