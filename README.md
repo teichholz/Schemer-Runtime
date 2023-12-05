@@ -3,7 +3,7 @@
 Simple runtime for my simple Scheme compiler [Schemer](https://github.com/teichholz/Schemer).
 Used to bootstrap my scheem library and implement GC via [BoehmGC](https://github.com/ivmai/bdwgc).
 
-The runtime Scheme type is implement via a tagged union:
+The runtime Scheme type is implemented via a tagged union:
 ```c
 typedef enum Type {
     Nil, Int, Float, Char, String, Bool, Cons, Symbol, Vector, Closure, Unspecified
